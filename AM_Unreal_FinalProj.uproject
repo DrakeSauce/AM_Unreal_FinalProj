@@ -7,7 +7,10 @@
 		{
 			"Name": "AM_Unreal_FinalProj",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [
