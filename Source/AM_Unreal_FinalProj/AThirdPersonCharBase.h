@@ -52,12 +52,16 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
 		UAnimMontage* attackAnim1;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
+		UAnimMontage* attackAnim2;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
 		UAnimMontage* hitAnim;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Animation")
 		bool bIsAttacking = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Animation")
 		float attackRate;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
+		int anim = 0; 
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
 		float health;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
@@ -84,6 +88,8 @@ public:
 	
 	UFUNCTION(BlueprintImplementableEvent)
 		void PlayAttackAnimEvent();
+	UFUNCTION(BlueprintCallable)
+		void Attack();
 	UFUNCTION(BlueprintCallable)
 		void LightAttack();
 	UFUNCTION(BlueprintCallable)

@@ -5,6 +5,7 @@
 #include "AThirdPersonCharBase.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "ResourceNode.h"
 #include "Animation/AnimInstanceProxy.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -33,6 +34,7 @@ AThirdPersonCharBase::AThirdPersonCharBase()
 	followCamera->bUsePawnControlRotation = false;
 
 	maxStamina = 100.0f;
+	anim = 0;
 }
 
 // Called when the game starts or when spawned
@@ -49,6 +51,7 @@ void AThirdPersonCharBase::BeginPlay()
 	stamina = maxStamina;
 	maxHealth = 100;
 	health = maxHealth;
+	anim = 0;
 }
 
 // Called every frame
@@ -87,17 +90,10 @@ void AThirdPersonCharBase::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 		
 		enhancedInputComponent->BindAction(lookAction, ETriggerEvent::Triggered, this, &AThirdPersonCharBase::Look);
 
-		enhancedInputComponent->BindAction(attackAction, ETriggerEvent::Triggered, this, &AThirdPersonCharBase::LightAttack);
+		enhancedInputComponent->BindAction(attackAction, ETriggerEvent::Triggered, this, &AThirdPersonCharBase::Attack);
 		
 		enhancedInputComponent->BindAction(sprintAction, ETriggerEvent::Started, this, &AThirdPersonCharBase::Sprint);
 		enhancedInputComponent->BindAction(sprintAction, ETriggerEvent::Completed, this, &AThirdPersonCharBase::StopSprinting);
-		
-		//PlayerInputComponent->BindAxis("Turn", this, &AThirdPersonCharBase::AddControllerYawInput);
-		//PlayerInputComponent->BindAxis("LookUp", this, &AThirdPersonCharBase::AddControllerPitchInput);
-
-		//PlayerInputComponent->BindAction("Attack1",IE_Pressed,this,&AThirdPersonCharBase::LightAttack);
-		//PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AThirdPersonCharBase::Sprint);
-		//PlayerInputComponent->BindAction("Sprint", IE_Released, this, &AThirdPersonCharBase::StopSprinting);
 	}
 }
 
@@ -154,22 +150,27 @@ void AThirdPersonCharBase::StopSprinting()
 
 #pragma region Attack
 
+void AThirdPersonCharBase::Attack()
+{
+	if (bIsAttacking) { return; }
+
+	bIsAttacking = true;
+	bUseControllerRotationYaw = true;
+	
+	GetCharacterMovement()->DisableMovement();
+
+	if (anim == 0)
+		PlayAnimMontage(attackAnim1, 1, NAME_None);
+	else if (anim == 1)
+		PlayAnimMontage(attackAnim2, 1, NAME_None);
+}
+
 void AThirdPersonCharBase::LightAttack()
 {
-	//if (bIsAttacking) { return; }
-
-	//GetCharacterMovement()->DisableMovement();
 	stamina -= 25;
-
-	PlayAttackAnimEvent();
-	PlayAnimMontage(attackAnim1, 1, NAME_None);
 	
-	bIsAttacking = true;
 	attackRate = 1;
-	//bUseControllerRotationYaw = true;
-
-
-	/*
+	
 	TArray<TEnumAsByte<EObjectTypeQuery>> objectTypes;
 	objectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_Pawn));
 	TArray<AActor*> actorsToIgnore;
@@ -190,19 +191,23 @@ void AThirdPersonCharBase::LightAttack()
 		{
 			if (IsValid(hitObj))
 			{
-				// Attack Whatever You're Attacking Here
-				
-				
+				AResourceNode* node = Cast<AResourceNode>(hitObj);
+				node->DamageHealth(damage);
 			}
 		}
 	}
-	*/
+	
 }
 
 void AThirdPersonCharBase::StopLightAttack()
 {
+	if (anim == 0)
+		anim = 1;
+	else if (anim == 1)
+		anim = 0;
+	
 	GetCharacterMovement()->MovementMode = MOVE_Walking;
-
+	bUseControllerRotationYaw = false;
 	bIsAttacking = false;
 }
 
