@@ -30,7 +30,14 @@ void AResourceNode::Tick(float DeltaTime)
 void AResourceNode::DamageHealth(float damage)
 {
 	health -= damage;
-	if (bCheckIsDead(health)) { this->Destroy(); }
+	if (bCheckIsDead(health))
+	{
+		//destroyable->DamageThreshold[0] = 0;
+		//destroyable->DamageThreshold[1] = 0;
+		//destroyable->DamageThreshold[2] = 0;
+		
+		this->Destroy();
+	}
 }
 
 bool AResourceNode::bCheckIsDead(float healthRemaining)

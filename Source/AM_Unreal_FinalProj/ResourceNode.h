@@ -4,8 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GeometryCollection/GeometryCollectionComponent.h"
 #include "ResourceNode.generated.h"
 
+class UGeometryCollectionComponent;
 UCLASS()
 class AM_UNREAL_FINALPROJ_API AResourceNode : public AActor
 {
@@ -32,4 +34,6 @@ public:
 		float health;
 	UPROPERTY(EditAnywhere, Category="Behaviour")
 		float maxHealth;
+	//UPROPERTY(EditAnywhere, Category="Behaviour")
+	//	UGeometryCollectionComponent* destroyable;
 };
