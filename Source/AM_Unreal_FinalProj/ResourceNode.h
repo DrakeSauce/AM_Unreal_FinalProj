@@ -4,7 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-
+#include "Field/FieldSystemObjects.h"
+#include "Field/FieldSystemActor.h"
 #include "ResourceNode.generated.h"
 
 class UGeometryCollectionComponent;
@@ -21,6 +22,8 @@ public:
 		void DamageHealth(float damage);
 	UFUNCTION()
 		bool bCheckIsDead(float healthRemaining);
+	UFUNCTION(BlueprintImplementableEvent)
+		void PhysEvent();
 
 protected:
 	// Called when the game starts or when spawned
@@ -34,6 +37,6 @@ public:
 		float health;
 	UPROPERTY(EditAnywhere, Category="Behaviour")
 		float maxHealth;
-	UPROPERTY(EditAnywhere, Category="Behaviour")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Behaviour")
 		UGeometryCollectionComponent* destroyable;
 };

@@ -3,6 +3,7 @@
 
 #include "ResourceNode.h"
 #include "GeometryCollection/GeometryCollectionComponent.h"
+#include "GeometryCollection/GeometryCollectionSimulationTypes.h"
 
 // Sets default values
 AResourceNode::AResourceNode()
@@ -13,6 +14,7 @@ AResourceNode::AResourceNode()
 	health = 100.0f;
 
 	destroyable = CreateDefaultSubobject<UGeometryCollectionComponent>("destroyable");
+
 	SetRootComponent(destroyable);
 }
 
@@ -39,7 +41,8 @@ void AResourceNode::DamageHealth(float damage)
 		destroyable->DamageThreshold[0] = 0;
 		destroyable->DamageThreshold[1] = 0;
 		destroyable->DamageThreshold[2] = 0;
-		
+
+		PhysEvent();
 		//this->Destroy();
 	}
 }

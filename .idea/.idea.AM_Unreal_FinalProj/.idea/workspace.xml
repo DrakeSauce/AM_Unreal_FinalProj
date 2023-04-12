@@ -7,7 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9261319f-ba54-4c01-a0cb-77789d181244" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AM_Unreal_FinalProj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AM_Unreal_FinalProj/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AM_Unreal_FinalProj/AM_Unreal_FinalProj.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AM_Unreal_FinalProj/AM_Unreal_FinalProj.Build.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +153,7 @@
       <updated>1681244099346</updated>
       <workItem from="1681244105695" duration="2206000" />
       <workItem from="1681256607087" duration="271000" />
+      <workItem from="1681314292645" duration="11000" />
     </task>
     <servers />
   </component>
