@@ -6,20 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9261319f-ba54-4c01-a0cb-77789d181244" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AM_Unreal_FinalProj/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AM_Unreal_FinalProj/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AM_Unreal_FinalProj/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AM_Unreal_FinalProj/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AM_Unreal_FinalProj/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AM_Unreal_FinalProj/.idea/.idea.AM_Unreal_FinalProj/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AM_Unreal_FinalProj/.idea/.idea.AM_Unreal_FinalProj/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AM_Unreal_FinalProj/.idea/.idea.AM_Unreal_FinalProj/.idea/projectSettingsUpdater.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AM_Unreal_FinalProj/.idea/.idea.AM_Unreal_FinalProj/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AM_Unreal_FinalProj/.idea/.idea.AM_Unreal_FinalProj/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_MyFiles/Blueprints/BP_Target.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_MyFiles/Blueprints/BP_Target.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_MyFiles/Blueprints/BP_ThirdPersonCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_MyFiles/Blueprints/BP_ThirdPersonCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_MyFiles/Levels/Main_Level.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_MyFiles/Levels/Main_Level.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AM_Unreal_FinalProj/ResourceNode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AM_Unreal_FinalProj/ResourceNode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AM_Unreal_FinalProj/ResourceNode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AM_Unreal_FinalProj/ResourceNode.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AM_Unreal_FinalProj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AM_Unreal_FinalProj/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/AM_Unreal_FinalProj/AM_Unreal_FinalProj.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AM_Unreal_FinalProj/AM_Unreal_FinalProj.Build.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,14 +22,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="C++ Project.AM_Unreal_FinalProj">
     <configuration name="AM_Unreal_FinalProj" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -165,6 +153,7 @@
       <option name="presentableId" value="Default" />
       <updated>1681244099346</updated>
       <workItem from="1681244105695" duration="2206000" />
+      <workItem from="1681256607087" duration="271000" />
     </task>
     <servers />
   </component>

@@ -2,6 +2,7 @@
 
 
 #include "ResourceNode.h"
+#include "GeometryCollection/GeometryCollectionComponent.h"
 
 // Sets default values
 AResourceNode::AResourceNode()
@@ -10,6 +11,9 @@ AResourceNode::AResourceNode()
 	PrimaryActorTick.bCanEverTick = true;
 	maxHealth = 100.0f;
 	health = 100.0f;
+
+	destroyable = CreateDefaultSubobject<UGeometryCollectionComponent>("destroyable");
+	SetRootComponent(destroyable);
 }
 
 
@@ -32,11 +36,11 @@ void AResourceNode::DamageHealth(float damage)
 	health -= damage;
 	if (bCheckIsDead(health))
 	{
-		//destroyable->DamageThreshold[0] = 0;
-		//destroyable->DamageThreshold[1] = 0;
-		//destroyable->DamageThreshold[2] = 0;
+		destroyable->DamageThreshold[0] = 0;
+		destroyable->DamageThreshold[1] = 0;
+		destroyable->DamageThreshold[2] = 0;
 		
-		this->Destroy();
+		//this->Destroy();
 	}
 }
 

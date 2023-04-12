@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "GeometryCollection/GeometryCollectionComponent.h"
+
 #include "ResourceNode.generated.h"
 
 class UGeometryCollectionComponent;
@@ -34,6 +34,6 @@ public:
 		float health;
 	UPROPERTY(EditAnywhere, Category="Behaviour")
 		float maxHealth;
-	//UPROPERTY(EditAnywhere, Category="Behaviour")
-	//	UGeometryCollectionComponent* destroyable;
+	UPROPERTY(EditAnywhere, Category="Behaviour")
+		UGeometryCollectionComponent* destroyable;
 };
