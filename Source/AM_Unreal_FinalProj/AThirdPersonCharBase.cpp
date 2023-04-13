@@ -179,6 +179,7 @@ void AThirdPersonCharBase::LightAttack()
 					wood += node->wood;
 					stone += node->stone;
 					iron += node->iron;
+					UpdateUI();
 				}
 				
 

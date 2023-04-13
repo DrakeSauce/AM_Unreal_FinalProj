@@ -101,6 +101,9 @@ public:
 		void LightAttack();
 	UFUNCTION(BlueprintCallable)
 		void StopLightAttack();
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void UpdateUI();
 	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
