@@ -181,8 +181,6 @@ void AThirdPersonCharBase::LightAttack()
 					iron += node->iron;
 					UpdateUI();
 				}
-				
-
 			}
 		}
 	}
