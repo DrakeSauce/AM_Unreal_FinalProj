@@ -4,9 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Field/FieldSystemObjects.h"
-#include "Field/FieldSystemActor.h"
 #include "ResourceNode.generated.h"
+
+UENUM(BlueprintType)
+enum class ResourceType : uint8 {
+	WOOD,
+	STONE,
+	IRON
+};
+
 
 class UGeometryCollectionComponent;
 UCLASS()
@@ -21,9 +27,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Behaviour")
 		void DamageHealth(float damage);
 	UFUNCTION()
-		bool bCheckIsDead(float healthRemaining);
+		bool bCheckIsDead();
 	UFUNCTION(BlueprintImplementableEvent)
 		void PhysEvent();
+	UFUNCTION(BlueprintCallable)
+		void InitializeResource(ResourceType type);
 
 protected:
 	// Called when the game starts or when spawned
@@ -33,10 +41,21 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, Category="Behaviour")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Behaviour")
 		float health;
 	UPROPERTY(EditAnywhere, Category="Behaviour")
 		float maxHealth;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Behaviour")
-		UGeometryCollectionComponent* destroyable;
+	UPROPERTY(VisibleAnywhere, Category = "Behaviour")
+		float damageResist;
+
+	UPROPERTY(EditAnywhere, Category = "Resource")
+		float wood;
+	UPROPERTY(VisibleAnywhere, Category = "Resource")
+		float stone;
+	UPROPERTY(VisibleAnywhere, Category = "Resource")
+		float iron;
+
+	UPROPERTY(EditAnywhere, Category = "Behaviour")
+		ResourceType resourceType;
 };
+

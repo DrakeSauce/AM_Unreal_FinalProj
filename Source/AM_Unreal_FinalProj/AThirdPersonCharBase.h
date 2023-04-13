@@ -67,6 +67,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
 		float maxHealth;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Resources")
+		float wood;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Resources")
+		float stone;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Resources")
+		float iron;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Combat")
 		float damage;
 	

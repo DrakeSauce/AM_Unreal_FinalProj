@@ -2,8 +2,7 @@
 
 
 #include "ResourceNode.h"
-#include "GeometryCollection/GeometryCollectionComponent.h"
-#include "GeometryCollection/GeometryCollectionSimulationTypes.h"
+
 
 // Sets default values
 AResourceNode::AResourceNode()
@@ -12,10 +11,6 @@ AResourceNode::AResourceNode()
 	PrimaryActorTick.bCanEverTick = true;
 	maxHealth = 100.0f;
 	health = 100.0f;
-
-	destroyable = CreateDefaultSubobject<UGeometryCollectionComponent>("destroyable");
-
-	SetRootComponent(destroyable);
 }
 
 
@@ -24,6 +19,7 @@ void AResourceNode::BeginPlay()
 {
 	Super::BeginPlay();
 	health = maxHealth;
+	InitializeResource(resourceType);
 }
 
 // Called every frame
@@ -35,21 +31,39 @@ void AResourceNode::Tick(float DeltaTime)
 
 void AResourceNode::DamageHealth(float damage)
 {
-	health -= damage;
-	if (bCheckIsDead(health))
-	{
-		destroyable->DamageThreshold[0] = 0;
-		destroyable->DamageThreshold[1] = 0;
-		destroyable->DamageThreshold[2] = 0;
+	float damageTotal = (damage - damageResist);
 
+	if (damageTotal > 0)
+		health -= damageTotal;
+
+	if (bCheckIsDead())
+	{
 		PhysEvent();
-		//this->Destroy();
+		this->Destroy();
 	}
 }
 
-bool AResourceNode::bCheckIsDead(float healthRemaining)
+bool AResourceNode::bCheckIsDead()
 {
-	if (healthRemaining <= 0) { return true; }
+	if (health <= 0) { return true; }
 	else {return false; }
+}
+
+void AResourceNode::InitializeResource(ResourceType type)
+{
+	switch (type) {
+		case ResourceType::WOOD:
+				wood = FMath::RandRange(25, 100); 
+				damageResist = 5;
+			break;
+		case ResourceType::STONE:
+				stone = FMath::RandRange(10, 50);
+				damageResist = 10;
+			break;
+		case ResourceType::IRON:
+				iron = FMath::RandRange(5, 20);
+				damageResist = 15;
+			break;
+	}
 }
 

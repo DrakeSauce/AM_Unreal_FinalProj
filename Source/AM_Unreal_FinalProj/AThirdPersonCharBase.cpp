@@ -59,24 +59,6 @@ void AThirdPersonCharBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	/*
-	if (bIsSprinting)
-	{
-		if (stamina > 1)
-			stamina -= 0.5f;
-		if (stamina < 1)
-			StopSprinting();
-	}
-	
-	if (!bIsSprinting && !bIsAttacking)
-	{
-		if (stamina < maxStamina)
-			stamina += 0.8f;
-	}
-
-	if (attackRate >= 0) { attackRate -= DeltaTime; }
-	else { bIsAttacking = false; }
-	*/
 }
 
 // Called to bind functionality to input
@@ -193,6 +175,13 @@ void AThirdPersonCharBase::LightAttack()
 			{
 				AResourceNode* node = Cast<AResourceNode>(hitObj);
 				node->DamageHealth(damage);
+				if (node->bCheckIsDead()) {
+					wood += node->wood;
+					stone += node->stone;
+					iron += node->iron;
+				}
+				
+
 			}
 		}
 	}
