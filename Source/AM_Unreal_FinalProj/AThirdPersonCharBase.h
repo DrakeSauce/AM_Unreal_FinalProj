@@ -104,6 +104,8 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void UpdateUI();
+	UFUNCTION(BlueprintImplementableEvent)
+		void UpdateTarget(AActor* target);
 	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

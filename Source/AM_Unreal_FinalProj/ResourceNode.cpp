@@ -18,7 +18,6 @@ AResourceNode::AResourceNode()
 void AResourceNode::BeginPlay()
 {
 	Super::BeginPlay();
-	health = maxHealth;
 	InitializeResource(resourceType);
 }
 
@@ -53,16 +52,25 @@ void AResourceNode::InitializeResource(ResourceType type)
 {
 	switch (type) {
 		case ResourceType::WOOD:
-				wood = FMath::RandRange(25, 100); 
-				damageResist = 5;
+				wood = FMath::RandRange(25, 100);
+				damageResist = FMath::RandRange(0, 5);
+				maxHealth = wood * 2;
+				health = maxHealth;
+				InitializeEvent();
 			break;
 		case ResourceType::STONE:
 				stone = FMath::RandRange(10, 50);
-				damageResist = 10;
+				damageResist = FMath::RandRange(5, 10);
+				maxHealth = stone * 3;
+				health = maxHealth;
+				InitializeEvent();
 			break;
 		case ResourceType::IRON:
 				iron = FMath::RandRange(5, 20);
-				damageResist = 15;
+				damageResist = FMath::RandRange(10, 15);
+				maxHealth = iron * 4;
+				health = maxHealth;
+				InitializeEvent();
 			break;
 	}
 }

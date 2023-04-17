@@ -174,7 +174,11 @@ void AThirdPersonCharBase::LightAttack()
 			if (IsValid(hitObj))
 			{
 				AResourceNode* node = Cast<AResourceNode>(hitObj);
+
 				node->DamageHealth(damage);
+				if (node->health > damage - node->damageResist)
+					UpdateTarget(hitObj);
+
 				if (node->bCheckIsDead()) {
 					wood += node->wood;
 					stone += node->stone;

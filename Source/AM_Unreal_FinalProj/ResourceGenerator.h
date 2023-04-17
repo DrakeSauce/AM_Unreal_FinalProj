@@ -4,7 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "AThirdPersonCharBase.h"
 #include "ResourceGenerator.generated.h"
+
+UENUM(BlueprintType)
+enum class ResourceGenType : uint8 {
+	WOOD,
+	STONE,
+	IRON
+};
 
 UCLASS()
 class AM_UNREAL_FINALPROJ_API AResourceGenerator : public AActor
@@ -25,7 +33,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere)
 		float generateTime;
 	UPROPERTY(VisibleAnywhere)
 		float woodGen;
@@ -35,6 +43,9 @@ public:
 		float ironGen;
 	UPROPERTY(VisibleAnywhere)
 		FTimerHandle genTimer;
+
+	UPROPERTY(EditAnywhere)
+		ResourceGenType genType;
 
 	AThirdPersonCharBase* playerRef;
 };

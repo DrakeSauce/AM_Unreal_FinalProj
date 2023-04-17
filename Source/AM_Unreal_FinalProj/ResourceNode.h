@@ -30,6 +30,8 @@ public:
 		bool bCheckIsDead();
 	UFUNCTION(BlueprintImplementableEvent)
 		void PhysEvent();
+	UFUNCTION(BlueprintImplementableEvent)
+		void InitializeEvent();
 	UFUNCTION(BlueprintCallable)
 		void InitializeResource(ResourceType type);
 
@@ -41,11 +43,11 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Behaviour")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Behaviour")
 		float health;
-	UPROPERTY(EditAnywhere, Category="Behaviour")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Behaviour")
 		float maxHealth;
-	UPROPERTY(VisibleAnywhere, Category = "Behaviour")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Behaviour")
 		float damageResist;
 
 	UPROPERTY(EditAnywhere, Category = "Resource")
