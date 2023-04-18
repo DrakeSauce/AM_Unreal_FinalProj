@@ -38,7 +38,7 @@ void AResourceNode::DamageHealth(float damage)
 	if (bCheckIsDead())
 	{
 		PhysEvent();
-		this->Destroy();
+		//this->Destroy();
 	}
 }
 
