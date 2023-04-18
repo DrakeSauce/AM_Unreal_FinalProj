@@ -203,7 +203,18 @@ void AThirdPersonCharBase::StopLightAttack()
 	bIsAttacking = false;
 }
 
+void AThirdPersonCharBase::CheckCanBuy(float woodCost, float stoneCost, float ironCost)
+{
+	if (woodCost > wood || stoneCost > stone || ironCost > iron) { 
 
+	}
+	else
+	{
+		wood -= woodCost;
+		stone -= stoneCost;
+		iron -= ironCost;
+	}
+}
 
 
 

@@ -92,6 +92,9 @@ public:
 	
 	void Sprint();
 	void StopSprinting();
+
+	UFUNCTION(BlueprintCallable)
+		void CheckCanBuy(float woodCost, float stoneCost, float ironCost);
 	
 	UFUNCTION(BlueprintImplementableEvent)
 		void PlayAttackAnimEvent();
