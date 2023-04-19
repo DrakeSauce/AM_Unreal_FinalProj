@@ -203,17 +203,23 @@ void AThirdPersonCharBase::StopLightAttack()
 	bIsAttacking = false;
 }
 
-void AThirdPersonCharBase::CheckCanBuy(float woodCost, float stoneCost, float ironCost)
+bool AThirdPersonCharBase::CheckCanBuy(float woodCost, float stoneCost, float ironCost)
 {
 	if (woodCost > wood || stoneCost > stone || ironCost > iron) { 
-
+		return false;
 	}
 	else
 	{
-		wood -= woodCost;
-		stone -= stoneCost;
-		iron -= ironCost;
+		return true;
 	}
+}
+
+void AThirdPersonCharBase::BuyItem(float woodCost, float stoneCost, float ironCost)
+{
+	wood -= woodCost;
+	stone -= stoneCost;
+	iron -= ironCost;
+	UpdateUI();
 }
 
 
