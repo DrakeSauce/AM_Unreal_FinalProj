@@ -175,9 +175,9 @@ void AThirdPersonCharBase::LightAttack()
 			{
 				AResourceNode* node = Cast<AResourceNode>(hitObj);
 
+				//if (node->health > damage - node->damageResist)
 				node->DamageHealth(damage);
-				if (node->health > damage - node->damageResist)
-					UpdateTarget(hitObj);
+				UpdateTarget(hitObj);
 
 				if (node->bCheckIsDead()) {
 					wood += node->wood;
@@ -220,6 +220,11 @@ void AThirdPersonCharBase::BuyItem(float woodCost, float stoneCost, float ironCo
 	stone -= stoneCost;
 	iron -= ironCost;
 	UpdateUI();
+}
+
+void AThirdPersonCharBase::DamageUpgrade()
+{
+	damage += 5;
 }
 
 

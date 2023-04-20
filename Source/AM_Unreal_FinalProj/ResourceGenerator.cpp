@@ -20,19 +20,19 @@ void AResourceGenerator::BeginPlay()
 
 	switch (genType) {
 		case ResourceGenType::WOOD:
-			woodGen = 10;
+			woodGen = 50;
 
 			stoneGen = 0;
 			ironGen = 0;
 			break;
 		case ResourceGenType::STONE:
-			stoneGen = 5;
+			stoneGen = 25;
 
 			woodGen = 0;
 			ironGen = 0;
 			break;
 		case ResourceGenType::IRON:
-			ironGen = 1;
+			ironGen = 10;
 
 			stoneGen = 0;
 			woodGen = 0;

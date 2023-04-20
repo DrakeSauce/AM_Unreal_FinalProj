@@ -97,6 +97,10 @@ public:
 		bool CheckCanBuy(float woodCost, float stoneCost, float ironCost);
 	UFUNCTION(BlueprintCallable)
 		void BuyItem(float woodCost, float stoneCost, float ironCost);
+
+	UFUNCTION(BlueprintCallable)
+		void DamageUpgrade();
+
 	
 	UFUNCTION(BlueprintImplementableEvent)
 		void PlayAttackAnimEvent();
@@ -107,7 +111,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void StopLightAttack();
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 		void UpdateUI();
 	UFUNCTION(BlueprintImplementableEvent)
 		void UpdateTarget(AActor* target);

@@ -32,8 +32,8 @@ void AResourceNode::DamageHealth(float damage)
 {
 	float damageTotal = (damage - damageResist);
 
-	if (damageTotal > 0)
-		health -= damageTotal;
+	//if (damageTotal > 0)
+	health -= damageTotal;
 
 	if (bCheckIsDead())
 	{
