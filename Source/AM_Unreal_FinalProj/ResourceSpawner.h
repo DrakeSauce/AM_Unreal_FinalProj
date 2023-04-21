@@ -24,6 +24,8 @@ public:
 		TArray<AActor*> spawnedObj;
 	UPROPERTY()
 		FTimerHandle spawnTimer;
+	UPROPERTY()
+		float spawnDelay;
 		
 
 protected:

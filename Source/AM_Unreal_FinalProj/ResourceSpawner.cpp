@@ -11,7 +11,6 @@ AResourceSpawner::AResourceSpawner()
 	PrimaryActorTick.bCanEverTick = true;
 
 	boxSpawner = CreateDefaultSubobject<UBoxComponent>(TEXT("Spawner"));
-
 }
 
 // Called when the game starts or when spawned
@@ -19,6 +18,9 @@ void AResourceSpawner::BeginPlay()
 {
 	Super::BeginPlay();
 	spawnedObj.SetNum(5);
+	spawnDelay = FMath::RandRange(0, 5);
+
+	GetWorld()->GetTimerManager().SetTimer(spawnTimer, this, &AResourceSpawner::SpawnActor, spawnDelay, true);
 }
 
 // Called every frame
@@ -43,16 +45,12 @@ void AResourceSpawner::SpawnActor()
 	spawnParams.Instigator = GetInstigator();
 	spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
-	float spawnDelay = FMath::RandRange(0, 5);
-
 	//Spawn the actor in question
 	if (!GetWorld()) { return; }
 
 	//actorToSpawn->
 	AActor* timeObjSpawned = GetWorld()->SpawnActor<AActor>(actorToSpawn, GetRandomSpawnLoc(), randomRot, spawnParams);
 	spawnedObj.Add(timeObjSpawned);
-	GetWorld()->GetTimerManager().SetTimer(spawnTimer, this, &AResourceSpawner::SpawnActor, spawnDelay, false);
-
 }
 
 FVector AResourceSpawner::GetRandomSpawnLoc()
