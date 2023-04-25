@@ -76,6 +76,9 @@ void AThirdPersonCharBase::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 		
 		enhancedInputComponent->BindAction(sprintAction, ETriggerEvent::Started, this, &AThirdPersonCharBase::Sprint);
 		enhancedInputComponent->BindAction(sprintAction, ETriggerEvent::Completed, this, &AThirdPersonCharBase::StopSprinting);
+
+		enhancedInputComponent->BindAction(jumpAction, ETriggerEvent::Started, this, &AThirdPersonCharBase::Jump);
+		enhancedInputComponent->BindAction(jumpAction, ETriggerEvent::Completed, this, &AThirdPersonCharBase::StopJumping);
 	}
 }
 
@@ -204,6 +207,8 @@ void AThirdPersonCharBase::StopLightAttack()
 	bUseControllerRotationYaw = false;
 	bIsAttacking = false;
 }
+
+#pragma endregion
 
 bool AThirdPersonCharBase::CheckCanBuy(float woodCost, float stoneCost, float ironCost)
 {

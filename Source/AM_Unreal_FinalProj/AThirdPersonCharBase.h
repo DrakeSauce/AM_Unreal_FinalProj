@@ -31,6 +31,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 		UInputAction* sprintAction;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+		UInputAction* jumpAction;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 		UInputAction* attackAction;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
@@ -53,8 +55,6 @@ public:
 		UAnimMontage* attackAnim1;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
 		UAnimMontage* attackAnim2;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
-		UAnimMontage* hitAnim;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Animation")
 		bool bIsAttacking = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Animation")

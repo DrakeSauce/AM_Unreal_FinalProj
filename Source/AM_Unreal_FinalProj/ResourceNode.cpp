@@ -53,22 +53,22 @@ void AResourceNode::InitializeResource(ResourceType type)
 	switch (type) {
 		case ResourceType::WOOD:
 				damageResist = FMath::RandRange(0, 5);
-				maxHealth = FMath::RandRange(100, 300);
-				wood = maxHealth;
+				wood = FMath::RandRange(100, 300);
+				maxHealth = wood;
 				health = maxHealth;
 				InitializeEvent();
 			break;
 		case ResourceType::STONE:
 				damageResist = FMath::RandRange(5, 10);
-				maxHealth = FMath::RandRange(50, 150);
-				stone = maxHealth;
+				stone = FMath::RandRange(50, 150);
+				maxHealth = stone;
 				health = maxHealth;
 				InitializeEvent();
 			break;
 		case ResourceType::IRON:
-				damageResist = FMath::RandRange(10, 15);
-				maxHealth = FMath::RandRange(25, 50);
-				iron = maxHealth;
+				damageResist = FMath::RandRange(10, 20);
+				iron = FMath::RandRange(25, 50);
+				maxHealth = iron * 2;
 				health = maxHealth;
 				InitializeEvent();
 			break;
