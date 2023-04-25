@@ -155,8 +155,10 @@ void AThirdPersonCharBase::LightAttack()
 	
 	TArray<TEnumAsByte<EObjectTypeQuery>> objectTypes;
 	objectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_Pawn));
+
 	TArray<AActor*> actorsToIgnore;
 	actorsToIgnore.Add(this);
+
 	TArray<AActor*> outHit;
 
 	if (UKismetSystemLibrary::SphereOverlapActors(

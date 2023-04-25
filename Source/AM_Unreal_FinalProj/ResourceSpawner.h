@@ -20,12 +20,12 @@ public:
 		UBoxComponent* boxSpawner;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		TSubclassOf<AResourceNode> actorToSpawn;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		TArray<AActor*> spawnedObj;
 	UPROPERTY()
 		FTimerHandle spawnTimer;
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 		float spawnDelay;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		int maxActors;
 		
 
 protected:
@@ -37,6 +37,8 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	UFUNCTION()
 		void SpawnActor();
+	UFUNCTION()
+		int CheckActorsInBox();
 	UFUNCTION()
 		FVector GetRandomSpawnLoc();
 
