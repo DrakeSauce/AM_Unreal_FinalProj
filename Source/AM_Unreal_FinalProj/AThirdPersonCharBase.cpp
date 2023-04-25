@@ -137,7 +137,7 @@ void AThirdPersonCharBase::StopSprinting()
 
 void AThirdPersonCharBase::Attack()
 {
-	if (bIsAttacking) { return; }
+	if (bIsAttacking || GetCharacterMovement()->IsFalling()) { return; }
 
 	bIsAttacking = true;
 	bUseControllerRotationYaw = true;
