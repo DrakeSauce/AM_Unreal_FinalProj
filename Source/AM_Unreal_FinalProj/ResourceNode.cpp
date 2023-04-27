@@ -50,12 +50,21 @@ bool AResourceNode::bCheckIsDead()
 
 void AResourceNode::InitializeResource(ResourceType type)
 {
+	float scaleSize;
+	FVector scale;
+
 	switch (type) {
 		case ResourceType::WOOD:
 				damageResist = FMath::RandRange(0, 5);
 				wood = FMath::RandRange(100, 300);
 				maxHealth = wood;
 				health = maxHealth;
+
+				scaleSize = wood / 300;
+
+				scale.Set(scaleSize, scaleSize, scaleSize);
+				SetActorScale3D(scale);
+
 				InitializeEvent();
 			break;
 		case ResourceType::STONE:
@@ -63,6 +72,13 @@ void AResourceNode::InitializeResource(ResourceType type)
 				stone = FMath::RandRange(50, 150);
 				maxHealth = stone;
 				health = maxHealth;
+
+				scaleSize = stone / 150;
+				rockScale = scaleSize;
+
+				scale.Set(scaleSize, scaleSize, scaleSize);
+				SetActorScale3D(scale);
+
 				InitializeEvent();
 			break;
 		case ResourceType::IRON:
@@ -70,6 +86,12 @@ void AResourceNode::InitializeResource(ResourceType type)
 				iron = FMath::RandRange(25, 50);
 				maxHealth = iron * 2;
 				health = maxHealth;
+
+				scaleSize = iron / 50;
+				
+				scale.Set(scaleSize, scaleSize, scaleSize);
+				SetActorScale3D(scale);
+
 				InitializeEvent();
 			break;
 	}

@@ -132,7 +132,6 @@ void AThirdPersonCharBase::StopSprinting()
 
 #pragma endregion 
 
-
 #pragma region Attack
 
 void AThirdPersonCharBase::Attack()
@@ -234,6 +233,15 @@ void AThirdPersonCharBase::DamageUpgrade()
 	damage += 5;
 }
 
+void AThirdPersonCharBase::ApplySleepy()
+{
+
+}
+
+void AThirdPersonCharBase::RemoveSleepy()
+{
+
+}
 
 
 

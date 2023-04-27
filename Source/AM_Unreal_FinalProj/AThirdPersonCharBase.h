@@ -115,6 +115,11 @@ public:
 		void UpdateUI();
 	UFUNCTION(BlueprintImplementableEvent)
 		void UpdateTarget(AActor* target);
+
+	UFUNCTION(BlueprintImplentableEvent)
+		void ApplySleepy();
+	UFUNCTION(BlueprintImplentableEvent)
+		void RemoveSleepy();
 	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

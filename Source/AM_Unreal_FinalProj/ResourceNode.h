@@ -57,6 +57,9 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Resource")
 		float iron;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Resource")
+		float rockScale;
+
 	UPROPERTY(EditAnywhere, Category = "Behaviour")
 		ResourceType resourceType;
 };
