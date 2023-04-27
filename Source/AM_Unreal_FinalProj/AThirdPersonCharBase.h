@@ -116,9 +116,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 		void UpdateTarget(AActor* target);
 
-	UFUNCTION(BlueprintImplentableEvent)
+	UFUNCTION(BlueprintImplementableEvent)
 		void ApplySleepy();
-	UFUNCTION(BlueprintImplentableEvent)
+	UFUNCTION(BlueprintImplementableEvent)
 		void RemoveSleepy();
 	
 	// Called to bind functionality to input

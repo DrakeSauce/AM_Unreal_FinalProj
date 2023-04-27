@@ -228,22 +228,5 @@ void AThirdPersonCharBase::BuyItem(float woodCost, float stoneCost, float ironCo
 	UpdateUI();
 }
 
-void AThirdPersonCharBase::DamageUpgrade()
-{
-	damage += 5;
-}
-
-void AThirdPersonCharBase::ApplySleepy()
-{
-
-}
-
-void AThirdPersonCharBase::RemoveSleepy()
-{
-
-}
-
-
-
 
 
