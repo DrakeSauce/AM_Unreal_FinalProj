@@ -73,6 +73,8 @@ public:
 		float stone;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Resources")
 		float iron;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Resources")
+		float food;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Combat")
 		float damage;
@@ -116,11 +118,6 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 		void UpdateTarget(AActor* target);
 
-	UFUNCTION(BlueprintImplementableEvent)
-		void ApplySleepy();
-	UFUNCTION(BlueprintImplementableEvent)
-		void RemoveSleepy();
-	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 

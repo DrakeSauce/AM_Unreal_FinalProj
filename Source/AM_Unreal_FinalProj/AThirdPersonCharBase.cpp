@@ -3,6 +3,7 @@
 
 #include "AThirdPersonCharBase.h"
 #include "AThirdPersonCharBase.h"
+#include "EnemyCharBase.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "ResourceNode.h"
@@ -177,17 +178,28 @@ void AThirdPersonCharBase::LightAttack()
 		{
 			if (IsValid(hitObj))
 			{
-				AResourceNode* node = Cast<AResourceNode>(hitObj);
+				if (AResourceNode* node = Cast<AResourceNode>(hitObj)) {
 
-				//if (node->health > damage - node->damageResist)
-				node->DamageHealth(damage);
-				UpdateTarget(hitObj);
+					if (!IsValid(node)) { return; }
 
-				if (node->bCheckIsDead()) {
-					wood += node->wood;
-					stone += node->stone;
-					iron += node->iron;
-					UpdateUI();
+					node->DamageHealth(damage);
+
+					if (node->bCheckIsDead()) {
+						wood += node->wood;
+						stone += node->stone;
+						iron += node->iron;
+						UpdateUI();
+					}
+
+					UpdateTarget(hitObj);
+				}
+
+				if (AEnemyCharBase* enemy = Cast<AEnemyCharBase>(hitObj))
+				{
+					if (!IsValid(enemy)) { return; }
+
+					enemy->EnemyTakeDamage(damage);
+					UpdateTarget(hitObj);
 				}
 			}
 		}
@@ -227,6 +239,13 @@ void AThirdPersonCharBase::BuyItem(float woodCost, float stoneCost, float ironCo
 	iron -= ironCost;
 	UpdateUI();
 }
+
+void AThirdPersonCharBase::DamageUpgrade()
+{
+	damage += 5;
+}
+
+
 
 
 
