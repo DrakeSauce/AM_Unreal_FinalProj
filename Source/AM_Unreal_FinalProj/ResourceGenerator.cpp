@@ -50,12 +50,15 @@ void AResourceGenerator::GenerateResource()
 		switch (genType) {
 		case ResourceGenType::WOOD:
 			playerRef->wood += woodGen;
+			HealStructure();
 			break;
 		case ResourceGenType::STONE:
 			playerRef->stone += stoneGen;
+			HealStructure();
 			break;
 		case ResourceGenType::IRON:
 			playerRef->iron += ironGen;
+			HealStructure();
 			break;
 		}
 
@@ -65,6 +68,25 @@ void AResourceGenerator::GenerateResource()
 		UE_LOG( LogTemp, Warning, TEXT("Error No Reference Found For Player") );
 	}
 }
+
+void AResourceGenerator::HealStructure()
+{
+	if (health < maxHealth)
+		health += 10;
+	else if (health > maxHealth)
+		health = maxHealth;
+}
+
+void AResourceGenerator::StructTakeDamage(float damageToTake)
+{
+	health -= damageToTake;
+
+	if (health <= 0) {
+		Destroy();
+	}
+}
+
+
 
 // Called every frame
 void AResourceGenerator::Tick(float DeltaTime)

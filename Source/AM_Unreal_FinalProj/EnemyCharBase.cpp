@@ -2,7 +2,7 @@
 
 #include "EnemyCharBase.h"
 #include "Kismet/GameplayStatics.h"
-#include "AThirdPersonCharBase.h"
+#include "ResourceGenerator.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
@@ -49,4 +49,40 @@ void AEnemyCharBase::EnemyTakeDamage(float damageToTake)
 	PlayAnimMontage(hitAnim, 1, NAME_None);
 
 	health -= damageToTake;
+}
+
+void AEnemyCharBase::AttackStructure()
+{
+	TArray<TEnumAsByte<EObjectTypeQuery>> objectTypes;
+	objectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_Pawn));
+
+	TArray<AActor*> actorsToIgnore;
+	actorsToIgnore.Add(this);
+
+	TArray<AActor*> outHit;
+
+	if (UKismetSystemLibrary::SphereOverlapActors(
+		GetController(),
+		GetActorLocation(),
+		500,
+		objectTypes,
+		nullptr,
+		actorsToIgnore,
+		outHit
+	))
+	{
+		for (AActor* hitObj : outHit)
+		{
+			if (IsValid(hitObj))
+			{
+				if (AResourceGenerator* enemy = Cast<AResourceGenerator>(hitObj))
+				{
+					if (!IsValid(enemy)) { return; }
+
+					PlayAnimMontage(attackAnim, 1.0f, NAME_None);
+					enemy->StructTakeDamage(damage);
+				}
+			}
+		}
+	}
 }

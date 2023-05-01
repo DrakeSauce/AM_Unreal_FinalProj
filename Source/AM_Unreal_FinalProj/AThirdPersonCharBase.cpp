@@ -36,6 +36,10 @@ AThirdPersonCharBase::AThirdPersonCharBase()
 
 	maxStamina = 100.0f;
 	anim = 0;
+	maxStamina = 100;
+	stamina = maxStamina;
+	maxHealth = 100;
+	health = maxHealth;
 }
 
 // Called when the game starts or when spawned
@@ -48,10 +52,7 @@ void AThirdPersonCharBase::BeginPlay()
 			subsystem->AddMappingContext(mappingContext, 0);
 
 	
-	maxStamina = 100;
-	stamina = maxStamina;
-	maxHealth = 100;
-	health = maxHealth;
+	
 	anim = 0;
 }
 

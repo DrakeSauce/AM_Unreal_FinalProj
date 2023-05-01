@@ -29,6 +29,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Animation")
 		UAnimMontage* hitAnim;
+	UPROPERTY(EditAnywhere, Category = "Animation")
+		UAnimMontage* attackAnim;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
 		bool bIsHit;
 
@@ -44,6 +47,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		void EnemyTakeDamage(float damageToTake);
+	UFUNCTION(BlueprintCallable)
+		void AttackStructure();
 
 
 };

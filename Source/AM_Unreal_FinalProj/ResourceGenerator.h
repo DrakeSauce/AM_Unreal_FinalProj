@@ -24,6 +24,10 @@ public:
 	AResourceGenerator();
 	UFUNCTION()
 		void GenerateResource();
+	UFUNCTION()
+		void HealStructure();
+	UFUNCTION()
+		void StructTakeDamage(float damageToTake);
 
 protected:
 	// Called when the game starts or when spawned
@@ -35,12 +39,19 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		float generateTime;
+
 	UPROPERTY(VisibleAnywhere)
 		float woodGen;
 	UPROPERTY(VisibleAnywhere)
 		float stoneGen;
 	UPROPERTY(VisibleAnywhere)
 		float ironGen;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float health;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float maxHealth;
+
 	UPROPERTY(VisibleAnywhere)
 		FTimerHandle genTimer;
 
