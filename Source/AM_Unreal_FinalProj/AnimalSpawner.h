@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/BoxComponent.h"
+#include "EnemyCharBase.h"
 #include "AnimalSpawner.generated.h"
 
 UCLASS()
@@ -18,11 +19,17 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		UBoxComponent* boxSpawner;
-
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		AActor* actorToSpawn;
+		TSubclassOf<AEnemyCharBase> actorToSpawn;
+	UPROPERTY(EditAnywhere)
+		TArray<AActor*> animalSpawn;
 	UPROPERTY()
-		TArray<AActor*> AnimalSpawn;
+		FTimerHandle spawnTimer;
+	UPROPERTY(EditAnywhere)
+		float spawnDelay;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		int maxActors;
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -31,5 +38,11 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	UFUNCTION()
+		void SpawnActor();
+	UFUNCTION()
+		void CheckActorsInArray();
+	UFUNCTION()
+		FVector GetRandomSpawnLoc();
 
 };
