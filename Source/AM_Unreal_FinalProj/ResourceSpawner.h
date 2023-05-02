@@ -21,6 +21,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		TSubclassOf<AResourceNode> actorToSpawn;
 	UPROPERTY()
+		TArray<AActor*> AnimalSpawn;
+	UPROPERTY()
 		FTimerHandle spawnTimer;
 	UPROPERTY(EditAnywhere)
 		float spawnDelay;
