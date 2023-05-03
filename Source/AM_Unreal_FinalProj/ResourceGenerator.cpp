@@ -39,6 +39,7 @@ void AResourceGenerator::BeginPlay()
 			break;
 	}
 
+	InitializeGenUI();
 	playerRef = Cast<AThirdPersonCharBase>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 	GetWorld()->GetTimerManager().SetTimer(genTimer, this, &AResourceGenerator::GenerateResource, generateTime, true);
 }
@@ -61,7 +62,7 @@ void AResourceGenerator::GenerateResource()
 			HealStructure();
 			break;
 		}
-
+		UpdateGenUI();
 		playerRef->UpdateUI();
 	}
 	else {
@@ -84,6 +85,8 @@ void AResourceGenerator::StructTakeDamage(float damageToTake)
 	if (health <= 0) {
 		Destroy();
 	}
+
+	UpdateGenUI();
 }
 
 

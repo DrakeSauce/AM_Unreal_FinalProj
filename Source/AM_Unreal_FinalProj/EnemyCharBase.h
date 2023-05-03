@@ -34,6 +34,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
 		bool bIsHit;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
+		bool bIsDead;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		float health;
@@ -49,6 +51,5 @@ public:
 		void EnemyTakeDamage(float damageToTake);
 	UFUNCTION(BlueprintCallable)
 		void AttackStructure();
-
 
 };

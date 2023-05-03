@@ -19,6 +19,7 @@ void AEnemyCharBase::BeginPlay()
 {
 	Super::BeginPlay();
 	health = maxHealth;
+	bIsDead = false;
 }
 
 // Called every frame
@@ -26,14 +27,7 @@ void AEnemyCharBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (health <= 0)
-	{
-		UE_LOG(LogTemp, Log, TEXT("Destroying Actor!"));
-		AThirdPersonCharBase* playerRef = Cast<AThirdPersonCharBase>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-		playerRef->food++;
-		playerRef->UpdateUI();
-		Destroy();
-	}
+	
 
 }
 
@@ -46,9 +40,19 @@ void AEnemyCharBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 void AEnemyCharBase::EnemyTakeDamage(float damageToTake)
 {
-	PlayAnimMontage(hitAnim, 1, NAME_None);
-
 	health -= damageToTake;
+	if (!bIsDead)
+		PlayAnimMontage(hitAnim, 1, NAME_None);
+
+	if (health <= 0)
+	{
+		UE_LOG(LogTemp, Log, TEXT("Destroying Actor!"));
+		AThirdPersonCharBase* playerRef = Cast<AThirdPersonCharBase>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+		if (!bIsDead)
+			playerRef->food++;
+		playerRef->UpdateUI();
+		bIsDead = true;
+	}
 }
 
 void AEnemyCharBase::AttackStructure()
@@ -78,7 +82,7 @@ void AEnemyCharBase::AttackStructure()
 				if (AResourceGenerator* enemy = Cast<AResourceGenerator>(hitObj))
 				{
 					if (!IsValid(enemy)) { return; }
-
+				
 					PlayAnimMontage(attackAnim, 1.0f, NAME_None);
 					enemy->StructTakeDamage(damage);
 				}

@@ -28,6 +28,10 @@ public:
 		void HealStructure();
 	UFUNCTION()
 		void StructTakeDamage(float damageToTake);
+	UFUNCTION(BlueprintImplementableEvent)
+		void UpdateGenUI();
+	UFUNCTION(BlueprintImplementableEvent)
+		void InitializeGenUI();
 
 protected:
 	// Called when the game starts or when spawned

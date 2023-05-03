@@ -40,6 +40,9 @@ AThirdPersonCharBase::AThirdPersonCharBase()
 	stamina = maxStamina;
 	maxHealth = 100;
 	health = maxHealth;
+	maxHunger = 100;
+	hunger = maxHunger;
+
 }
 
 // Called when the game starts or when spawned
@@ -61,6 +64,15 @@ void AThirdPersonCharBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	hunger -= DeltaTime / 2;
+
+	if (hunger > 100)
+		hunger = 100;
+	if (hunger < 0)
+		hunger = 0;
+
+	UpdateHungerSlider();	
+	
 }
 
 // Called to bind functionality to input
@@ -81,6 +93,9 @@ void AThirdPersonCharBase::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 		enhancedInputComponent->BindAction(jumpAction, ETriggerEvent::Started, this, &AThirdPersonCharBase::Jump);
 		enhancedInputComponent->BindAction(jumpAction, ETriggerEvent::Completed, this, &AThirdPersonCharBase::StopJumping);
+	
+		enhancedInputComponent->BindAction(eatAction, ETriggerEvent::Started, this, &AThirdPersonCharBase::Eat);
+	
 	}
 }
 
@@ -183,7 +198,7 @@ void AThirdPersonCharBase::LightAttack()
 
 					if (!IsValid(node)) { return; }
 
-					node->DamageHealth(damage);
+					node->DamageHealth(ProcessDamage());
 
 					if (node->bCheckIsDead()) {
 						wood += node->wood;
@@ -199,7 +214,7 @@ void AThirdPersonCharBase::LightAttack()
 				{
 					if (!IsValid(enemy)) { return; }
 
-					enemy->EnemyTakeDamage(damage);
+					enemy->EnemyTakeDamage(ProcessDamage());
 					UpdateTarget(hitObj);
 				}
 			}
@@ -218,6 +233,44 @@ void AThirdPersonCharBase::StopLightAttack()
 	GetCharacterMovement()->MovementMode = MOVE_Walking;
 	bUseControllerRotationYaw = false;
 	bIsAttacking = false;
+}
+
+float AThirdPersonCharBase::ProcessDamage()
+{
+	float newDamage = damage;
+	if (hunger <= 100 && hunger > 70) {
+		newDamage = damage;
+	}
+	else if (hunger < 70 && hunger > 50) {
+		newDamage /= 1.2;
+	}
+	else if (hunger < 50 && hunger > 10) {
+		newDamage /= 1.4;
+	}
+	else if (hunger < 10) {
+		newDamage /= 2;
+	}
+	return newDamage;
+}
+
+FName AThirdPersonCharBase::ProcessHunger()
+{
+	FName name = "";
+
+	if (hunger < 150 && hunger > 70) {
+		name = "Full";
+	}
+	else if (hunger < 70 && hunger > 50) {
+		name = "Hungry";
+	}
+	else if (hunger < 50 && hunger > 10) {
+		name = "Starving";
+	}
+	else if (hunger < 10) {
+		name = "Dying";
+	}
+
+	return name;
 }
 
 #pragma endregion
@@ -246,7 +299,14 @@ void AThirdPersonCharBase::DamageUpgrade()
 	damage += 5;
 }
 
-
+void AThirdPersonCharBase::Eat()
+{
+	if (food > 0) {
+		food--;
+		hunger += 25;
+		UpdateUI();
+	}
+}
 
 
 

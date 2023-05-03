@@ -34,6 +34,8 @@ public:
 		UInputAction* jumpAction;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 		UInputAction* attackAction;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+		UInputAction* eatAction;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
 		USpringArmComponent* cameraBoom;
@@ -75,6 +77,10 @@ public:
 		float iron;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Resources")
 		float food;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Resources")
+		float hunger;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Resources")
+		float maxHunger;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Combat")
 		float damage;
@@ -102,7 +108,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		void DamageUpgrade();
-
 	
 	UFUNCTION(BlueprintImplementableEvent)
 		void PlayAttackAnimEvent();
@@ -112,11 +117,20 @@ public:
 		void LightAttack();
 	UFUNCTION(BlueprintCallable)
 		void StopLightAttack();
+	UFUNCTION(BlueprintCallable)
+		float ProcessDamage();
+	UFUNCTION(BlueprintCallable)
+		FName ProcessHunger();
+
+	UFUNCTION(BlueprintCallable)
+		void Eat();
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 		void UpdateUI();
 	UFUNCTION(BlueprintImplementableEvent)
 		void UpdateTarget(AActor* target);
+	UFUNCTION(BlueprintImplementableEvent)
+		void UpdateHungerSlider();
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
